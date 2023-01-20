@@ -1,4 +1,4 @@
-bmi_algorithm
+Ziva Health Baseline Health Score Algorithm
 ==============================
 
 An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score
@@ -54,4 +54,4 @@ Project Organization
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
