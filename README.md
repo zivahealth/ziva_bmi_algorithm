@@ -21,7 +21,13 @@ For the years 1999-2006, the downloaded data are organized in the following stru
     |       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
     |       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
     
-For `NHANES_2017-Mar2020`, the data follow the same structure, but there is no DXA data, instead of `SMQMEC.XPT` there is `SMQRTU.XPT`, and there is an additional file `SMQSHS.XPT` for secondhand smoke exposure. Because the data from 2017-2020 do not include DXA data, we disregard it for this project. `~/src/data/01-convert_to_csv.py` converts all of the datasets from XPT to CSV, storing them in the same location. `~/src/data/02-data_cleaning.py` cleans the raw CSV files, resulting in the datasets found in `~/data/processed/`. See `~/notebooks/01-data_prep.ipynb` and `~/notebooks/01-eda.ipynb`, which were written concurrently, for more information about this process.
+The `NHANES_2017-Mar2020` directory follows the same structure as shown above, but with the following exceptions:
+
+- There is no DXA data
+- Instead of `SMQMEC.XPT` there is `SMQRTU.XPT`
+- There is an additional file `SMQSHS.XPT` for secondhand smoke exposure.
+
+Because the data from 2017-2020 do not include DXA data, we disregard it for this project. `~/src/data/01-convert_to_csv.py` converts all of the datasets from XPT to CSV, storing them in the same location. `~/src/data/02-data_cleaning.py` cleans the raw CSV files, resulting in the datasets found in `~/data/processed/`. See `~/notebooks/01-data_prep.ipynb` and `~/notebooks/01-eda.ipynb`, which were written concurrently, for more information about this process.
 
 
 
