@@ -23,11 +23,10 @@ for subdir, dirs, files in os.walk(rootdir):
 
             # Construct new filepath
             newfile = file[:-3] + "csv"
-            newsubdir = subdir.replace('raw', 'interim')
-            newfile_path = os.path.join(newsubdir, newfile)
+            newfile_path = os.path.join(subdir, newfile)
 
             # Create directory if does not exist
-            Path(newsubdir).mkdir(parents=True, exist_ok=True)
+            # Path(newsubdir).mkdir(parents=True, exist_ok=True)
 
             # Save dataset as csv
             data.to_csv(newfile_path, index=False)
