@@ -1,7 +1,27 @@
 Ziva Health Baseline Health Score Algorithm
 ==============================
 
-An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score
+An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score.
+
+## Data
+The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.  
+  
+For the years 1999-2006, the downloaded data are organized in the following structure:
+    ├── data/raw/NHANES_1999-2000
+    │   ├── Demographics
+    |   |   └── DEMO.XPT    <- Demographics data
+    |   |
+    │   ├── Examination
+    |   |   ├── BMX.XPT     <- Body measurement data
+    |   |   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data
+    |   |
+    │   └── Questionnaire
+    |       ├── SMQ.XPT     <- Smoking and tobacco use data
+    |       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
+    |       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
+    
+    
+
 
 Project Organization
 ------------
