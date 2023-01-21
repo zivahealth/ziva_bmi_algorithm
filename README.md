@@ -7,6 +7,7 @@ An algorithm that takes a user's height, weight, age, sex at birth, and waist ci
 The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.  
   
 For the years 1999-2006, the downloaded data are organized in the following structure:
+------------
     ├── data/raw/NHANES_1999-2000
     │   ├── Demographics
     |   |   └── DEMO.XPT    <- Demographics data
