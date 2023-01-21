@@ -4,8 +4,8 @@ Ziva Health Baseline Health Score Algorithm
 An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score.
 
 ## Data
-The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.  
-  
+The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.
+
 For the years 1999-2006, the downloaded data are organized in the following structure (with directory names `NHANES_1999-2000`, `NHANES_2001-2002`, `NHANES_2003-2004`, `NHANES_2005-2006`):
 ------------
     ├── data/raw/NHANES_yyyy-yyyy
