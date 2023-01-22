@@ -30,8 +30,8 @@ We did not use the household smoking and tobacco use nor the recent smoking and 
 The `NHANES_2017-Mar2020` directory follows the same general structure as shown above, but with the following exceptions:
 
 - There is no DXA data
-- Instead of `SMQMEC.XPT` there is `SMQRTU.XPT` ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_SMQRTU.htm))
-- There is an additional file `SMQSHS.XPT` for secondhand smoke exposure ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_SMQSHS.htm))
+- Instead of `SMQMEC.XPT` there is `SMQRTU.XPT`
+- There is an additional file `SMQSHS.XPT` for secondhand smoke exposure
 
 Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
