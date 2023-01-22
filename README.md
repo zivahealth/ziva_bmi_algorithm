@@ -10,18 +10,24 @@ For the years 1999-2006, the downloaded data are organized in the following stru
 
     ├── data/raw/NHANES_yyyy-yyyy
     │   ├── Demographics
-    │   │   └── DEMO.XPT    <- Demographics data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/DEMO.htm))
+    │   │   └── DEMO.XPT    <- Demographics data
     │   │
     │   ├── Examination
-    │   │   ├── BMX.XPT     <- Body measurement data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/BMX.htm))
-    │   │   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/Dxa/Dxa.aspx))
+    │   │   ├── BMX.XPT     <- Body measurement data
+    │   │   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data
     │   │
     │   └── Questionnaire
-    │       ├── SMQ.XPT     <- Smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQ.htm))
-    │       ├── SMQFAM.XPT  <- Household smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQFAM.htm))
-    │       └── SMQMEC.XPT  <- Recent smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQMEC.htm))
+    │       ├── SMQ.XPT     <- Smoking and tobacco use data
+    │       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
+    │       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
+
+We did not use the household smoking and tobacco use nor the recent smoking and tobacco use datasets. To view the documentation for the datasets we used in this project, access the links below:
+- Demographics: [1999-2000](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/DEMO.htm), [2001-2002](https://wwwn.cdc.gov/Nchs/Nhanes/2001-2002/DEMO_B.htm), [2003-2004](https://wwwn.cdc.gov/Nchs/Nhanes/2003-2004/DEMO_C.htm), [2005-2006](https://wwwn.cdc.gov/Nchs/Nhanes/2005-2006/DEMO_D.htm)
+- Body measurements: [1999-2000](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/BMX.htm), [2001-2002](https://wwwn.cdc.gov/Nchs/Nhanes/2001-2002/BMX_B.htm), [2003-2004](https://wwwn.cdc.gov/Nchs/Nhanes/2003-2004/BMX_C.htm), [2005-2006](https://wwwn.cdc.gov/Nchs/Nhanes/2005-2006/BMX_D.htm)
+- DXA: [1999-2006](https://wwwn.cdc.gov/Nchs/Nhanes/Dxa/Dxa.aspx)
+- Smoking and tobacco use: [1999-2000](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQ.htm), [2001-2002](https://wwwn.cdc.gov/Nchs/Nhanes/2001-2002/SMQ_B.htm), [2003-2004](https://wwwn.cdc.gov/Nchs/Nhanes/2003-2004/SMQ_C.htm), [2005-2006](https://wwwn.cdc.gov/Nchs/Nhanes/2005-2006/SMQ_D.htm)
     
-The `NHANES_2017-Mar2020` directory follows the same structure as shown above, but with the following exceptions:
+The `NHANES_2017-Mar2020` directory follows the same general structure as shown above, but with the following exceptions:
 
 - There is no DXA data
 - Instead of `SMQMEC.XPT` there is `SMQRTU.XPT` ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_SMQRTU.htm))
