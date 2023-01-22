@@ -27,7 +27,7 @@ The `NHANES_2017-Mar2020` directory follows the same structure as shown above, b
 - Instead of `SMQMEC.XPT` there is `SMQRTU.XPT`
 - There is an additional file `SMQSHS.XPT` for secondhand smoke exposure.
 
-Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-data_prep.ipynb](./notebooks/01-data_prep.ipynb) and [01-eda.ipynb](./notebooks/01-eda.ipynb), which were written concurrently, for more information about this process.
+Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
 
 
