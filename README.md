@@ -10,16 +10,16 @@ For the years 1999-2006, the downloaded data are organized in the following stru
 
     ├── data/raw/NHANES_yyyy-yyyy
     │   ├── Demographics
-    |   |   └── DEMO.XPT    <- Demographics data
-    |   |
+    │   │   └── DEMO.XPT    <- Demographics data
+    │   │
     │   ├── Examination
-    |   |   ├── BMX.XPT     <- Body measurement data
-    |   |   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data
-    |   |
+    │   │   ├── BMX.XPT     <- Body measurement data
+    │   │   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data
+    │   │
     │   └── Questionnaire
-    |       ├── SMQ.XPT     <- Smoking and tobacco use data
-    |       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
-    |       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
+    │       ├── SMQ.XPT     <- Smoking and tobacco use data
+    │       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
+    │       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
     
 The `NHANES_2017-Mar2020` directory follows the same structure as shown above, but with the following exceptions:
 
