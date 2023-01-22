@@ -6,26 +6,26 @@ An algorithm that takes a user's height, weight, age, sex at birth, and waist ci
 ## Data
 The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.
 
-For the years 1999-2006, the downloaded data are organized in the following structure (with directory names `NHANES_1999-2000`, `NHANES_2001-2002`, `NHANES_2003-2004`, `NHANES_2005-2006`):
+For the years 1999-2006, the downloaded data are organized in the following structure [here](./data/raw/) (with directory names `NHANES_1999-2000`, `NHANES_2001-2002`, `NHANES_2003-2004`, `NHANES_2005-2006`):
 
     ├── data/raw/NHANES_yyyy-yyyy
     │   ├── Demographics
-    │   │   └── DEMO.XPT    <- Demographics data
+    │   │   └── DEMO.XPT    <- Demographics data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/DEMO.htm))
     │   │
     │   ├── Examination
-    │   │   ├── BMX.XPT     <- Body measurement data
-    │   │   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data
+    │   │   ├── BMX.XPT     <- Body measurement data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/BMX.htm))
+    │   │   └── dxx.xpt     <- Dual Energy X-ray Absorptiometry (DXA) multiple imputation data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/Dxa/Dxa.aspx))
     │   │
     │   └── Questionnaire
-    │       ├── SMQ.XPT     <- Smoking and tobacco use data
-    │       ├── SMQFAM.XPT  <- Household smoking and tobacco use data
-    │       └── SMQMEC.XPT  <- Recent smoking and tobacco use data
+    │       ├── SMQ.XPT     <- Smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQ.htm))
+    │       ├── SMQFAM.XPT  <- Household smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQFAM.htm))
+    │       └── SMQMEC.XPT  <- Recent smoking and tobacco use data ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/1999-2000/SMQMEC.htm))
     
 The `NHANES_2017-Mar2020` directory follows the same structure as shown above, but with the following exceptions:
 
 - There is no DXA data
-- Instead of `SMQMEC.XPT` there is `SMQRTU.XPT`
-- There is an additional file `SMQSHS.XPT` for secondhand smoke exposure.
+- Instead of `SMQMEC.XPT` there is `SMQRTU.XPT` ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_SMQRTU.htm))
+- There is an additional file `SMQSHS.XPT` for secondhand smoke exposure ([see docs](https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_SMQSHS.htm))
 
 Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
