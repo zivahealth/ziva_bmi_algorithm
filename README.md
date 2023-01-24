@@ -1,14 +1,10 @@
-Ziva Health Baseline Health Score Algorithm
-==============================
+# Ziva Health Baseline Health Score Algorithm
 
 An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score.
 
-Setup
-------------
+## Setup
 This project uses Anaconda as a package manager. With Anaconda installed on your machine, run `conda env create -f environment.yml` to create a virtual environment with all the necessary dependencies.
 
-Project Breakdown
-------------
 ## Data
 The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.
 
@@ -44,8 +40,7 @@ Because the data from 2017-2020 do not include DXA data, we disregard it for thi
 ## Algorithm
 This project uses a random forest algorithm.
 
-File Structure
-------------
+## File Structure
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -91,8 +86,3 @@ File Structure
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
-
-
