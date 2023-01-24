@@ -37,6 +37,13 @@ The `NHANES_2017-Mar2020` directory follows the same general structure as shown 
 
 Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
+### Some notes about the data:
+The participants in the NHANES held demographics/measurements in the following ranges:
+|         | Weight (kg/lbs)  | Height (m/ft-in)  | Age   | Waist Circumference  |
+| :-----: | ---------------- | ----------------- | ----- | -------------------- |
+| Minimum | value            | value             | value | value                |
+| Maximum | value            | value             | value | value                |
+
 ## Algorithm
 This project uses a random forest algorithm.
 
