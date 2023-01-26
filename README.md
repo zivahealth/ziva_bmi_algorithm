@@ -54,9 +54,9 @@ This project uses a random forest algorithm.
 
 $$
 \operatorname{\widehat{score}} = -0.03 + 0.08(\operatorname{bfp,\ 10}) - 0.01(\operatorname{bfp,\ 10^2}) \\
- + 0.02(\operatorname{age}_{\operatorname{1}}) + 0.03(\operatorname{age}_{\operatorname{2}}) \\
- + 0.05(\operatorname{age}_{\operatorname{3}}) + 0.05(\operatorname{age}_{\operatorname{4}}) \\
- - 0.03(\operatorname{sex}_{\operatorname{1}})
++ 0.02(\operatorname{age}_{\operatorname{1}}) + 0.03(\operatorname{age}_{\operatorname{2}}) \\
++ 0.05(\operatorname{age}_{\operatorname{3}}) + 0.05(\operatorname{age}_{\operatorname{4}}) \\
+- 0.03(\operatorname{sex}_{\operatorname{1}})
 $$
 
 ## File Structure
