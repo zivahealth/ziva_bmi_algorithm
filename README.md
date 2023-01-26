@@ -2,12 +2,13 @@
 
 An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score.
 
-## Setup
+## Setup for Replication
 This project uses Anaconda as a package manager. With Anaconda installed on your machine, run `conda env create -f environment.yml` to create a virtual environment with all the necessary dependencies.
 
 ## Data
 The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.
 
+### Retrieval and Organization
 For the years 1999-2006, the downloaded data are organized in the following structure [here](./data/raw/) (with directory names `NHANES_1999-2000`, `NHANES_2001-2002`, `NHANES_2003-2004`, `NHANES_2005-2006`):
 
     ├── data/raw/NHANES_yyyy-yyyy
@@ -37,15 +38,23 @@ The `NHANES_2017-Mar2020` directory follows the same general structure as shown 
 
 Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
-### Some notes about the data:
+### Multiple Imputation for DXA Data
+
+### Data Thresholds
 The participants in the NHANES held demographics/measurements in the following ranges:
 |         | Weight (kg/lbs)  | Height (m/ft-in)  | Age   | Waist Circumference  |
 | :-----: | ---------------- | ----------------- | ----- | -------------------- |
 | Minimum | value            | value             | value | value                |
 | Maximum | value            | value             | value | value                |
 
+Because the algorithm is not trained on any data that exceed these thresholds, we rely on the algorithm to generate an accurate score for individuals outside of these ranges.
+
 ## Algorithm
 This project uses a random forest algorithm.
+
+$$
+\operatorname{\widehat{score}} = -0.03 + 0.08(\operatorname{bfp,\ 10}) - 0.01(\operatorname{bfp,\ 10^2}) + 0(\operatorname{bfp,\ 10^3}) + 0(\operatorname{bfp,\ 10^4}) + 0(\operatorname{bfp,\ 10^5}) + 0(\operatorname{bfp,\ 10^6}) + 0(\operatorname{bfp,\ 10^7}) + 0(\operatorname{bfp,\ 10^8}) + 0(\operatorname{bfp,\ 10^9}) + 0(\operatorname{bfp,\ 10^10}) + 0.02(\operatorname{age}_{\operatorname{1}}) + 0.03(\operatorname{age}_{\operatorname{2}}) + 0.05(\operatorname{age}_{\operatorname{3}}) + 0.05(\operatorname{age}_{\operatorname{4}}) - 0.03(\operatorname{sex}_{\operatorname{1}})
+$$
 
 ## File Structure
 
