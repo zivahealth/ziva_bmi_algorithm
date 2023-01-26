@@ -50,12 +50,9 @@ The participants in the NHANES held demographics/measurements in the following r
 Because the algorithm is not trained on any data that exceed these thresholds, we rely on the algorithm to generate an accurate score for individuals outside of these ranges.
 
 ## Algorithm
-This project uses a random forest algorithm to predict the user's body fat percentage. The body fat percentage is then applied to the following formula to generate a score:
-$$
-\operatorname{\widehat{score}} = -0.03 + 0.08(\operatorname{bfp,\ 10}) - 0.01(\operatorname{bfp,\ 10^2}) \\ + 0.02(\operatorname{age}_{\operatorname{1}}) + 0.03(\operatorname{age}_{\operatorname{2}}) +\\ 0.05(\operatorname{age}_{\operatorname{3}}) + 0.05(\operatorname{age}_{\operatorname{4}}) \\ - 0.03(\operatorname{sex}_{\operatorname{1}})
-$$
+This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a polynomial regression model to return a health score between 0 and 1.
 
-We built this formula using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
+We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
 ## File Structure
 
