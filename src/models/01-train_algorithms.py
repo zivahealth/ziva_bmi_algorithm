@@ -42,5 +42,5 @@ for i, model_i in enumerate(model_rf):
 
 ### SAVE ALGORITHMS ###
 for i, model_i in enumerate(model_rf):
-    with open('./../../models/model' + str(i+1) + '.pkl', 'wb') as f:
+    with open('./../../models/rf_regressors/model' + str(i+1) + '.pkl', 'wb') as f:
         pickle.dump(model_i, f)
