@@ -123,7 +123,8 @@ bfp_ranges_m = [bfp_ranges_m_twenties, bfp_ranges_m_thirties, bfp_ranges_m_forti
 
 
 # Generate data
-age_groups = ['twenties', 'thirties', 'forties', 'fifties', 'sixties']
+age_groups = ['twenties', 'thirties', 'forties', 'fifties', 'sixties'] # for reference
+sex_groups = ['female', 'male'] # for reference
 
 # FEMALE
 bfp_f = []
@@ -157,8 +158,8 @@ for age_group_i, age_group in enumerate(bfp_ranges_f):
         for i, obs in enumerate(bfp_group):
             bfp_f.append(obs)
             scores_f.append(scores[i])
-            ages_f.append(age)
-            sex_f.append("f")
+            ages_f.append(age_group_i)
+            sex_f.append(1)
 
 female_data = pd.DataFrame(list(zip(bfp_f, scores_f, ages_f, sex_f)), columns=['bfp', 'score', 'age', 'sex'])
 
@@ -194,8 +195,8 @@ for age_group_i, age_group in enumerate(bfp_ranges_m):
         for i, obs in enumerate(bfp_group):
             bfp_m.append(obs)
             scores_m.append(scores[i])
-            ages_m.append(age)
-            sex_m.append("m")
+            ages_m.append(age_group_i)
+            sex_m.append(0)
 
 male_data = pd.DataFrame(list(zip(bfp_m, scores_m, ages_m, sex_m)), columns=['bfp', 'score', 'age', 'sex'])
 
