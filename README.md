@@ -54,6 +54,8 @@ This project uses a random forest algorithm to predict the user's body fat perce
 
 We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
+![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) `#f03c15`
+
 ### Scoring Mechanism
 | Body Fat Percentage Group         | Scoring Range |
 | :-------------------------------: | ------------- |
@@ -75,7 +77,8 @@ We built this polynomial regression algorithm using [this](http://pennshape.upen
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── models             <- Saved random forest models (one for each imputation) as pickle files.
+    ├── models             <- Saved random forest models (one for each imputation) as pickle
+    │                         files.
     │
     ├── notebooks          <- Jupyter notebooks.
     │
