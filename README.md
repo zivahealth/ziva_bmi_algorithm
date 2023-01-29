@@ -4,7 +4,7 @@ Body Mass Index (BMI) is an immensely popular metric for determining a person's 
 
 This project overcomes the shortcomings inherent with BMI. Our algorithm takes an individual's weight, height, sex (at birth), age, and waist circumference to generate a health score between 0-100% based on the individual's predicted body fat percentage. We generalize a person's health to body fat percentage because body fat levels are so highly correlated with diabetes, heart conditions, and other bodily ailments.
 
-This health score algorithm will be implemented into Ziva Health website (at the 0-100% scale) and the Ziva Health app (at a 0-35% scale, contributing to a more holistic health score). The implementation presented in this repository returns a result on the 0-100% scale, but it can be converted to the app's use case by simply multiplying the score by a factor of $0.35$.
+This health score algorithm will be implemented into the Ziva Health website (at the 0-100% scale) and the Ziva Health app (at a 0-35% scale, contributing to a more holistic health score). The implementation presented in this repository returns a result on the 0-100% scale, but it can be converted to the app's use case by simply multiplying the score by a factor of $0.35$.
 
 ### Using the Algorithm
 To generate a score, download this repository, follow the setup instructions below, and then run [02-run_algorithm.py](./src/models/02-run_algorithm.py) from the [src/models/](./src/models/) directory in your terminal.
@@ -59,7 +59,7 @@ Because the algorithm is not trained on any data that exceed these thresholds, w
 Due to missing data in the NHANES dataset, the CDC performed multiple imputation to fill the missing data with highly probable replacement values. However, in order to preserve the statistical variation in the replacement values, each missing value in the data is given five imputations of potential replacement values. In keeping with proper statistical practices, we trained five different Random Forest models (see more details on this in the next section) for each imputation of body fat percentage data. In practice, we our final prediction of the user's body fat percentage is the average of the five outputs from each imputation's model.
 
 ## Algorithm
-This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a 7-degree polynomial regression model to return a health score between 0 and 1 (or 0-100%).
+This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a 7-degree polynomial regression model to return a health score between 0 and 1 (or 0-100%). To generate the weighted health score for the app, simply multiply the health score by the weight factor.
 
 We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
