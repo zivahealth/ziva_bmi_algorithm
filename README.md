@@ -1,10 +1,18 @@
 # Ziva Health Baseline Health Score Algorithm
+### About this Project
+Body Mass Index (BMI) is an immensely popular metric for determining a person's approximate body composition. It has become so widespread that even the National Institute of Health (NIH) has [defined](https://www.nhlbi.nih.gov/sites/default/files/media/docs/obesity-evidence-review.pdf) the thresholds for obesity based entirely on BMI. However, there are major shortcomings with BMI in that it does not account for different body types. As such, an individual may be in excellent shape but still be considered obese by the NIH standards.
 
-An algorithm that takes a user's height, weight, age, sex at birth, and waist circumference to return a baseline health score.
+This project overcomes the shortcomings inherent with BMI. Our algorithm takes an individual's weight, height, sex (at birth), age, and waist circumference to generate a health score between 0-100% based on the individual's predicted body fat percentage. We generalize a person's health to body fat percentage because body fat levels are so highly correlated with diabetes, heart conditions, and other bodily ailments.
 
-## Setup for Replication
+This health score algorithm will be implemented into Ziva Health website (at the 0-100% scale) and the Ziva Health app (at a 0-35% scale, contributing to a more holistic health score). The implementation presented in this repository returns a result on the 0-100% scale, but it can be converted to the app's use case by simply multiplying the score by a factor of $0.35$.
+
+### Using the Algorithm
+To generate a score, download this repository, follow the setup instructions below, and then run [02-run_algorithm.py](./src/models/02-run_algorithm.py) from the [src/models/](./src/models/) directory in your terminal.
+
+### Setup for Replication
 This project uses Anaconda as a package manager. With Anaconda installed on your machine, run `conda env create -f environment.yml` to create a virtual environment with all the necessary dependencies.
 
+# Technical Details
 ## Data
 The data is downloaded and organized from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/Default.aspx), a large source of health data provided by the CDC.
 
@@ -38,8 +46,6 @@ The `NHANES_2017-Mar2020` directory follows the same general structure as shown 
 
 Because the data from 2017-2020 do not include DXA data, we disregard it for this project. [01-convert_to_csv.py](./src/data/01-convert_to_csv.py) converts all of the datasets from XPT to CSV, storing them alongside the XPT files in [data/raw](./data/raw/). [02-data_cleaning.py](./src/data/02-data_cleaning.py) cleans the raw CSV files, resulting in the final datasets found in [data/processed](./data/processed/). See [01-eda.ipynb](./notebooks/01-eda.ipynb) for more information about this process.
 
-### Multiple Imputation for DXA Data
-
 ### Data Thresholds
 The participants in the NHANES held demographics/measurements in the following ranges:
 |         | Weight               | Height            | Age   | Waist Circumference  |
@@ -47,10 +53,13 @@ The participants in the NHANES held demographics/measurements in the following r
 | Minimum | 40.8 lbs (18.5 kg)   | 3'7" (1.1 m)      | 8     | 12.6 in (32.0 cm)    |
 | Maximum | 481.9 lbs (218.6 kg) | 6'6" (2.0 m)      | 85    | 698.8 in (175 cm)    |
 
-Because the algorithm is not trained on any data that exceed these thresholds, we rely on the algorithm to generate an accurate score for individuals outside of these ranges.
+Because the algorithm is not trained on any data that exceed these thresholds, we cannot rely on the algorithm to generate an accurate score for individuals outside of these ranges.
+
+### Multiple Imputation for DXA Data
+Due to missing data in the NHANES dataset, the CDC performed multiple imputation to fill the missing data with highly probable replacement values. However, in order to preserve the statistical variation in the replacement values, each missing value in the data is given five imputations of potential replacement values. In keeping with proper statistical practices, we trained five different Random Forest models (see more details on this in the next section) for each imputation of body fat percentage data. In practice, we our final prediction of the user's body fat percentage is the average of the five outputs from each imputation's model.
 
 ## Algorithm
-This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a polynomial regression model to return a health score between 0 and 1.
+This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a polynomial regression model to return a health score between 0 and 1 (or 0-100%).
 
 We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
@@ -65,6 +74,9 @@ We built this polynomial regression algorithm using [this](http://pennshape.upen
 | Poor (Increased Health Risk)      | 60-70%        |
 | High (Increased Health Risk)      | 30-60%        |
 | Unhumanly High                    | 0-30%         |
+
+### Deploying the Algorithm
+Assuming the environment is properly set up, [this](./src/models/essential_files.zip) zip file contains all the essential files needed to run/replicate the algorithm. All other files in this repository are meant for transparency in the development process. 
 
 ## File Structure
 
