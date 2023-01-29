@@ -1,6 +1,6 @@
 # Ziva Health Baseline Health Score Algorithm
 ### About this Project
-Body Mass Index (BMI) is an immensely popular metric for determining a person's approximate body composition. It has become so widespread that even the National Institute of Health (NIH) has [defined](https://www.nhlbi.nih.gov/sites/default/files/media/docs/obesity-evidence-review.pdf) the thresholds for obesity based entirely on BMI. However, there are major shortcomings with BMI in that it does not account for different body types. As such, an individual may be in excellent shape but still be considered obese by the NIH standards.
+Body Mass Index (BMI) is an immensely popular metric for determining a person's approximate body composition. It has become so widespread that even the National Institute of Health (NIH) has [defined](https://www.nhlbi.nih.gov/sites/default/files/media/docs/obesity-evidence-review.pdf) the thresholds for obesity based entirely on BMI. However, there are major shortcomings with BMI in that it does not account for different body types. For example, an individual may be in excellent shape but still be considered obese by the NIH standards.
 
 This project overcomes the shortcomings inherent with BMI. Our algorithm takes an individual's weight, height, sex (at birth), age, and waist circumference to generate a health score between 0-100% based on the individual's predicted body fat percentage. We generalize a person's health to body fat percentage because body fat levels are so highly correlated with diabetes, heart conditions, and other bodily ailments.
 
@@ -59,21 +59,22 @@ Because the algorithm is not trained on any data that exceed these thresholds, w
 Due to missing data in the NHANES dataset, the CDC performed multiple imputation to fill the missing data with highly probable replacement values. However, in order to preserve the statistical variation in the replacement values, each missing value in the data is given five imputations of potential replacement values. In keeping with proper statistical practices, we trained five different Random Forest models (see more details on this in the next section) for each imputation of body fat percentage data. In practice, we our final prediction of the user's body fat percentage is the average of the five outputs from each imputation's model.
 
 ## Algorithm
-This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a polynomial regression model to return a health score between 0 and 1 (or 0-100%).
+This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a 7-degree polynomial regression model to return a health score between 0 and 1 (or 0-100%).
 
 We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
 ### Scoring Mechanism
 | Body Fat Percentage Group         | Scoring Range |
 | :-------------------------------: | ------------- |
-| Unhumanly Low                     | 0-30%         |
 | Low (Increased Health Risk)       | 30-90%        |
 | Excellent/Fit (Healthy)           | 90-100%       |
 | Good/Normal (Healthy)             | 80-100%       |
 | Fair/Average (Healthy)            | 70-80%        |
 | Poor (Increased Health Risk)      | 60-70%        |
 | High (Increased Health Risk)      | 30-60%        |
-| Unhumanly High                    | 0-30%         |
+
+We also generage a score between 0-30% for unhumanly high or unhumanly low body fat percentages. When these scores are generated, we  prompt the user to double check their inputs.
+
 
 ### Deploying the Algorithm
 Assuming the environment is properly set up, [this](./src/models/essential_files.zip) zip file contains all the essential files needed to run/replicate the algorithm. All other files in this repository are meant for transparency in the development process. 
@@ -88,8 +89,9 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
     │   └── raw            <- The original, immutable data dump.
     │
     ├── models             <- Saved random forest models (one for each imputation) as pickle
-    │                         files.
-    │
+    │   │                     files.
+    │   ├── lm_poly7_coeffs.csv
+
     ├── notebooks          <- Jupyter notebooks.
     │
     ├── references         <- Research articles informing the baseline algorithms.
