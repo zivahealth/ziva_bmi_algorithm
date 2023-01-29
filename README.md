@@ -42,10 +42,10 @@ Because the data from 2017-2020 do not include DXA data, we disregard it for thi
 
 ### Data Thresholds
 The participants in the NHANES held demographics/measurements in the following ranges:
-|         | Weight (kg/lbs)  | Height (m/ft-in)  | Age   | Waist Circumference  |
-| :-----: | ---------------- | ----------------- | ----- | -------------------- |
-| Minimum | value            | value             | value | value                |
-| Maximum | value            | value             | value | value                |
+|         | Weight               | Height            | Age   | Waist Circumference  |
+| :-----: | -------------------- | ----------------- | ----- | -------------------- |
+| Minimum | 40.8 lbs (18.5 kg)   | 3'7" (1.1 m)      | 8     | 12.6 in (32.0 cm)    |
+| Maximum | 481.9 lbs (218.6 kg) | 6'6" (2.0 m)      | 85    | 698.8 in (175 cm)    |
 
 Because the algorithm is not trained on any data that exceed these thresholds, we rely on the algorithm to generate an accurate score for individuals outside of these ranges.
 
