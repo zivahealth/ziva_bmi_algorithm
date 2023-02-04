@@ -184,7 +184,7 @@ if __name__ == "__main__":
     score = score_bfp(body_fat_pred, user_data[0][3], user_data[0][2])
     
     # Construct output string
-    output = """Predicted body fat percentage: {}
+    output = """Predicted body fat percentage: {}%
     Health score: {}%""".format(np.round(body_fat_pred, 2), np.round(score, 2) * 100)
 
     # Report results

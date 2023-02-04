@@ -139,7 +139,7 @@ for age_group_i, age_group in enumerate(bfp_ranges_f):
 
         # Set scores
         if grade == 0:
-            scores = np.arange(0, .3, (.3-0)/n_group)
+            scores = np.arange(0, .3, (.3-0)/n_group)   # Unhumanly low
         elif grade == 1:
             scores = np.arange(.3, .9, (.9-.3)/n_group)
         elif grade == 2:
@@ -153,7 +153,7 @@ for age_group_i, age_group in enumerate(bfp_ranges_f):
         elif grade == 6:
             scores = np.arange(.6, .3, (.3-.6)/n_group)
         elif grade == 7:
-            scores = np.arange(.3, 0, (0-.3)/n_group)
+            scores = np.arange(.3, 0, (0-.3)/n_group)   # Unhumanly high
 
         for i, obs in enumerate(bfp_group):
             bfp_f.append(obs)
