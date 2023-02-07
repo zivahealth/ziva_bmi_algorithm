@@ -30,7 +30,7 @@ for (sex_group in unique(scoring_data$sex)) {
       y = "Health Score (scaled 0 to 1)",
       color = "Age Range"
     ) +
-    scale_x_continuous(breaks = c(0, 20, 40, 60), labels = c("0%", "20%", "40%", "60%"))
+    scale_x_continuous(breaks = c(0, 20, 40, 60, 100), labels = c("0%", "20%", "40%", "60%", "100%"))
 
   # Print plot
   print(comp_plot)
