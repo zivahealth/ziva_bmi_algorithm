@@ -33,6 +33,7 @@ bfp_f = []
 scores_f = []
 ages_f = []
 sex_f = []
+grade_f = []
 
 for age_group_i, age_group in enumerate(bfp_ranges_f):
     age = age_groups[age_group_i]
@@ -61,14 +62,16 @@ for age_group_i, age_group in enumerate(bfp_ranges_f):
         scores_f.append(scores)
         ages_f.append(age_group_i)
         sex_f.append(1)
+        grade_f.append(grade)
 
-female_data = pd.DataFrame(list(zip(bfp_f, scores_f, ages_f, sex_f)), columns=['bfp', 'score', 'age', 'sex'])
+female_data = pd.DataFrame(list(zip(bfp_f, scores_f, ages_f, sex_f, grade_f)), columns=['bfp', 'score', 'age', 'sex', 'grade'])
 
 # MALE
 bfp_m = []
 scores_m = []
 ages_m = []
 sex_m = []
+grade_m = []
 
 for age_group_i, age_group in enumerate(bfp_ranges_m):
     age = age_groups[age_group_i]
@@ -97,8 +100,9 @@ for age_group_i, age_group in enumerate(bfp_ranges_m):
         scores_m.append(scores)
         ages_m.append(age_group_i)
         sex_m.append(0)
+        grade_m.append(grade)
 
-male_data = pd.DataFrame(list(zip(bfp_m, scores_m, ages_m, sex_m)), columns=['bfp', 'score', 'age', 'sex'])
+male_data = pd.DataFrame(list(zip(bfp_m, scores_m, ages_m, sex_m, grade_m)), columns=['bfp', 'score', 'age', 'sex', 'grade'])
 
 # Combine female and male dataframes
 df = pd.concat([female_data, male_data], axis=0).reset_index(drop=True)
