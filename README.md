@@ -68,6 +68,8 @@ We built this polynomial regression algorithm using [this](http://pennshape.upen
 | :--------------: | ------------- | ------- | ------- | ----- | -------------- |
 | Scoring Range    | 0-30%         | 30-100% | 100-70% | 30-0% | 0%             |
 
+See the plots [here](./src/models/Rplots.pdf) for more details.
+
 
 ### Deploying the Algorithm
 Assuming the environment is properly set up, [this](./src/models/essential_files.zip) zip file contains all the essential files needed to run/replicate the algorithm. All other files in this repository are meant for transparency in the development process. 
