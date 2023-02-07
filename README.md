@@ -64,8 +64,8 @@ This project uses a random forest algorithm to predict the user's body fat perce
 We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
 ### Scoring Mechanism
-| :--------------: | ------------- | ------- | ------- | ----- | -------------- |
 | Scoring Category | Unhumanly Low | Low     | Ideal   | High  | Unhumanly High |
+| :--------------: | ------------- | ------- | ------- | ----- | -------------- |
 | Scoring Range    | 0-30%         | 30-100% | 100-70% | 30-0% | 0%             |
 
 
