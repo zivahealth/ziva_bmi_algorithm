@@ -93,8 +93,9 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── models/rf_regressors
-    │   └── raw            <- Saved random forest models (one for each imputation) as pickle files.
+    ├── models
+    │   └── rf_regressors  <- Saved random forest models (one for each imputation) as pickle
+    │                         files.
     │
     ├── notebooks          <- Jupyter notebooks.
     │
