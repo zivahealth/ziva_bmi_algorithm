@@ -4,6 +4,8 @@ Body Mass Index (BMI) is an immensely popular metric for determining a person's 
 
 This project overcomes the shortcomings inherent with BMI. Our algorithm takes an individual's weight, height, sex (at birth), age, and waist circumference to generate a health score between 0-100% based on the individual's predicted body fat percentage. We generalize a person's health to body fat percentage because body fat levels are so highly correlated with diabetes, heart conditions, and other bodily ailments.
 
+The algorithm for this project is trained on the best data available--from the CDC's National Health and Nutrition Examination Survey (NHANES). Between 1999 and 2006, NHANES measured the body fat composition of 26,427 individuals using [Dual Energy X-ray Absorptiometry (DXA)](https://wwwn.cdc.gov/Nchs/Nhanes/Dxa/Dxa.aspx)--one of the most accurate methods for measuring body fat composition.
+
 This health score algorithm will be implemented into the Ziva Health website (at the 0-100% scale) and the Ziva Health app (at a 0-35% scale, contributing to a more holistic health score). The implementation presented in this repository returns a result on the 0-100% scale, but it can be converted to the app's use case by simply multiplying the score by a factor of $0.35$.
 
 ### Using the Algorithm
