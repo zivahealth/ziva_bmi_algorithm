@@ -103,7 +103,7 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
     │
     ├── reports            <- Jupyter notebook outputs, saved as HTML and PDF files.
     │
-    ├── requirements.txt   <- The yaml file for reproducing the analysis environment, e.g.
+    ├── environment.yml   <- The yaml file for reproducing the analysis environment, e.g.
     │                         generated with `conda env export > environment.yml`
     │
     └── src                <- Source code for use in this project.
