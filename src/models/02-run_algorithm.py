@@ -216,6 +216,11 @@ if __name__ == "__main__":
     score, grade = score_bfp(body_fat_pred, user_data[0][3], user_data[0][2])
 
     # Identify proper feedback based on grade
+
+    # 02/15/2023: As it stands, Parveen requested that we omit the feedback messages and let the users interpret their
+    # health score themselves. I will leave the code for generating the grade feedback for potential future use, even though
+    # it is obsolete in this iteration of the project
+
     if grade == 0:
         grade_feedback = "Your predicted body fat percentage is unhumanly low. Please double check your input measurements."
     elif grade == 1:
@@ -230,11 +235,10 @@ if __name__ == "__main__":
     # Identify outliers
     outlier_output = outlier_detection(user_data)
 
-    # Construct output string
+    # Construct output string (02/15/2023: Omitting feedback message)
     output = """Predicted body fat percentage: {}%
     Health score: {}%
-    {}
-{}""".format(np.round(body_fat_pred, 2), np.round(score * 100, 2), grade_feedback, outlier_output)
+{}""".format(np.round(body_fat_pred, 2), np.round(score * 100, 2), outlier_output)
 
     # Report results
     print(output)
