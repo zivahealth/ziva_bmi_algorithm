@@ -69,9 +69,9 @@ Because the algorithm is not trained on any data that exceed these thresholds, w
 Due to missing data in the NHANES dataset, the CDC performed multiple imputation to fill the missing data with highly probable replacement values. However, in order to preserve the statistical variation in the replacement values, each missing value in the data is given five imputations of potential replacement values. In keeping with proper statistical practices, we trained five different Random Forest models (see more details on this in the next section) for each imputation of body fat percentage data. In practice, we our final prediction of the user's body fat percentage is the average of the five outputs from each imputation's model.
 
 ## Algorithm
-This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a 7-degree polynomial regression model to return a health score between 0 and 1 (or 0-100%). To generate the weighted health score for the app, simply multiply the health score by the weight factor.
+This project uses a random forest algorithm to predict the user's body fat percentage, which is then fed into a custom piecewise function to return a health score between 0 and 1 (or 0-100%). To generate the weighted health score for the app, simply multiply the health score by the weight factor.
 
-We built this polynomial regression algorithm using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
+We built this custom piecewise function using [this](http://pennshape.upenn.edu/files/pennshape/Body-Composition-Fact-Sheet.pdf) information about healthy body fat percentages.
 
 ### Scoring Mechanism
 | Scoring Category | Unhumanly Low | Low     | Ideal   | High  | Unhumanly High |
@@ -93,10 +93,9 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── models             <- Saved random forest models (one for each imputation) as pickle
-    │   │                     files.
-    │   ├── lm_poly7_coeffs.csv
-
+    ├── models/rf_regressors
+    │   └── raw            <- Saved random forest models (one for each imputation) as pickle files.
+    │
     ├── notebooks          <- Jupyter notebooks.
     │
     ├── references         <- Research articles informing the baseline algorithms.
@@ -109,7 +108,12 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
     └── src                <- Source code for use in this project.
         ├── data           <- Scripts to convert XPT datasets to CSV, clean data
         │   ├── 01-convert_to_csv.py
-        │   └── 02-data_cleaning.py
+        │   ├── 02-data_cleaning.py
+        │   └── 03-generate_scoring_data.py
         │
         └── models         <- Scripts to train and save the algorithm
-            └── 01-train_algorithm.py
+            ├── 01-train_algorithm.py
+            ├── 02-run_algorithm.py
+            ├── 03-plot_scoring_algorithm.R
+            ├── essential_files.zip
+            └── Rplots.pdf
