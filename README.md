@@ -9,6 +9,14 @@ This health score algorithm will be implemented into the Ziva Health website (at
 ### Using the Algorithm
 To generate a score, download this repository, follow the setup instructions below, and then run [02-run_algorithm.py](./src/models/02-run_algorithm.py) from the [src/models/](./src/models/) directory in your terminal.
 
+#### Important Note for Accuracy
+In order to return an accurate health score and/or body fat percentage result from the algorithm, it is essential that the inputs (weight, height, age, sex, waist circumference) be measured in the same way they were measured on the subjects in the NHANES dataset. This necessity primarily concerns the measurements for waist circumference.  
+  
+The algorithm is particularly sensitive to waist circumference and will almost certainly return an exaggerated body fat percentage if the inputted waist circumference is not precise. I strongly recommend prompting the users of this algorithm to measure their waist circumference as outlined by the [NHANES procedure manual for body measurements](https://wwwn.cdc.gov/nchs/data/nhanes/1999-2000/manuals/bm.pdf) (see item 3.3.1.7):
+> To define the level at which the waist or abdominal circumference is measured, you must first locate and mark a bony landmark, the lateral border of the ilium. Have the [Sample Participant (SP)] stand and hold the examination gown above the waist. Lower the pants and underclothing of the SP slightly, and standing behind and to the right of the SP, palpate the hip area to locate the right ilium (see Exhibit 3-5). Draw a horizontal line just above the uppermost lateral border of the right ilium and then cross the line to indicate the midaxillary line of the body. Standing on the SP's right side, place the measuring tape around the trunk in a horizontal plane at the level marked on the right side of the trunk. Hold the zero end below the measurement value. Use the mirror on the wall to ensure correct horizontal alignment of the measuring tape. This is especially useful when measuring overweight SPs or women with hourglass-shaped torsos. The recorder should also observe the SP to make sure that the tape is parallel to the floor and that the tape is snug, but does not compress the skin. Make the measurement at the end of a normal expiration and call it to the recorder to the nearest millimeter.
+
+![Exhibit 3.5 from NHANES Procedure Manual](./reports/img/ex_3_5.png)
+
 ### Setup for Replication
 This project uses Anaconda as a package manager. With Anaconda installed on your machine, run `conda env create -f environment.yml` to create a virtual environment with all the necessary dependencies.
 
