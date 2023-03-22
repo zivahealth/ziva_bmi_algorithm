@@ -88,6 +88,7 @@ Assuming the environment is properly set up, [this](./src/models/essential_files
 
     ├── LICENSE
     ├── README.md          <- The top-level README for developers using this project.
+    ├── Dockerfile
     ├── data
     │   ├── interim        <- Intermediate data that has been transformed.
     │   ├── processed      <- The final, canonical data sets for modeling.
