@@ -62,13 +62,13 @@ def data_prompt():
         waist_circum_cm = input("Enter waist circumference (cm): ")
 
         # Save data in numpy array to return
-        user_data = np.array([
+        user_data = np.array([[
             float(weight_kg),
             float(height_cm),
             float(sex_num),
             float(age_yrs),
             float(waist_circum_cm)
-        ])
+        ]])
 
         return(user_data)
 
