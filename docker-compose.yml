@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 80:8000
+    # env_file:
+    #   - .env
+    restart: always
+    logging:
+      options:
+        max-size: "5m"
+        max-file: "2"
+    tty: true # another way of keeping container running
+    entrypoint: ["/app/src/models/start.sh"] # comment out to just start container; then can attach and debug
+volumes:
+  fastapi:
