@@ -5,6 +5,7 @@ import os
 import pickle
 from sklearn.ensemble import RandomForestRegressor
 
+
 # Define functions
 def read_models():
     """
@@ -15,15 +16,16 @@ def read_models():
     """
 
     # Read in models
-    models_path = './../../models/rf_regressors/'
+    models_path = "./../../models/rf_regressors/"
     models = []
 
     for file in os.listdir(models_path):
         # Save model
-        with open(models_path + file, 'rb') as m:
+        with open(models_path + file, "rb") as m:
             models.append(pickle.load(m))
 
     return models
+
 
 def data_prompt():
     """
@@ -31,8 +33,8 @@ def data_prompt():
 
     Returns:
         2d numpy array consisting of one element in the first dimension and five
-        elements in the second dimension: weight in kilograms, height in 
-        centimeters, sex (1 for female, 0 for male), age in years, and waist 
+        elements in the second dimension: weight in kilograms, height in
+        centimeters, sex (1 for female, 0 for male), age in years, and waist
         circumference in centimeters
     """
 
@@ -42,7 +44,7 @@ def data_prompt():
     weight_unit = input("Do you prefer metric system or imperial system? (m/i) ")
 
     # Prompt user for data in metric system
-    if weight_unit == 'm':
+    if weight_unit == "m":
         # Prompt for weight
         weight_kg = input("Enter weight (kg): ")
 
@@ -53,7 +55,7 @@ def data_prompt():
 
         # Prompt for sex
         sex = input("Enter sex at birth: (m/f) ")
-        sex_num = 1 if sex == 'f' else 0
+        sex_num = 1 if sex == "f" else 0
 
         # Prompt for age
         age_yrs = input("Enter age: ")
@@ -62,29 +64,35 @@ def data_prompt():
         waist_circum_cm = input("Enter waist circumference (cm): ")
 
         # Save data in numpy array to return
-        user_data = np.array([[
-            float(weight_kg),
-            float(height_cm),
-            float(sex_num),
-            float(age_yrs),
-            float(waist_circum_cm)
-        ]])
+        user_data = np.array(
+            [
+                [
+                    float(weight_kg),
+                    float(height_cm),
+                    float(sex_num),
+                    float(age_yrs),
+                    float(waist_circum_cm),
+                ]
+            ]
+        )
 
-        return(user_data)
+        return user_data
 
     # Prompt user for data in imperial system
-    elif weight_unit == 'i':
+    elif weight_unit == "i":
         # Prompt for weight
         weight_lbs = input("Enter weight (lbs): ")
 
         # Prompt for height
-        height_input = input("""Enter height in feet and inches (for example, enter 5'10" as 5 10) """).split()
+        height_input = input(
+            """Enter height in feet and inches (for example, enter 5'10" as 5 10) """
+        ).split()
         # Calculate precise height
         height_in = float(height_input[0]) * 12 + float(height_input[1])
 
         # Prompt for sex
         sex = input("Enter sex at birth: (m/f) ")
-        sex_num = 1 if sex == 'f' else 0
+        sex_num = 1 if sex == "f" else 0
 
         # Prompt for age
         age_yrs = input("Enter age: ")
@@ -93,15 +101,19 @@ def data_prompt():
         waist_circum_in = input("Enter waist circumference (inches): ")
 
         # Save data in numpy array to return
-        user_data = np.array([[
-            float(weight_lbs),
-            float(height_in),
-            float(sex_num),
-            float(age_yrs),
-            float(waist_circum_in)
-        ]])
+        user_data = np.array(
+            [
+                [
+                    float(weight_lbs),
+                    float(height_in),
+                    float(sex_num),
+                    float(age_yrs),
+                    float(waist_circum_in),
+                ]
+            ]
+        )
 
-        return(user_data * CONVERSION_ARRAY)
+        return user_data * CONVERSION_ARRAY
 
     # Error
     else:
@@ -133,22 +145,25 @@ def score_bfp(bfp, age, sex_num):
     interp_pts = pd.read_csv("./../../data/processed/scoring_data.csv")
 
     # Subset based on age and sex
-    iterp_pts_sub = interp_pts[(interp_pts['age'] == age_class) & (interp_pts['sex'] == sex_num)].copy()
+    iterp_pts_sub = interp_pts[
+        (interp_pts["age"] == age_class) & (interp_pts["sex"] == sex_num)
+    ].copy()
 
     # Convert columns of interest to lists
-    bfp_range = iterp_pts_sub['bfp'].tolist()
-    score_range = iterp_pts_sub['score'].tolist()
-    grade_range = iterp_pts_sub['grade'].tolist()
+    bfp_range = iterp_pts_sub["bfp"].tolist()
+    score_range = iterp_pts_sub["score"].tolist()
+    grade_range = iterp_pts_sub["grade"].tolist()
 
     # Interpolate health score
     health_score = np.interp(bfp, bfp_range, score_range)
     grade_output = np.floor(np.interp(bfp, bfp_range, grade_range))
 
-    return(health_score, grade_output)
+    return (health_score, grade_output)
+
 
 def outlier_detection(user_input):
     """
-    Check the user input for values that lie outside the ranges of data featured in the 
+    Check the user input for values that lie outside the ranges of data featured in the
     NHANES dataset. Warn the user that there may be inaccuracies in their results because
     of these outliers.
 
@@ -195,7 +210,8 @@ def outlier_detection(user_input):
     elif len(outliers_note) == 0:
         return age_note
     else:
-        return outliers_note + '\n' + age_note
+        return outliers_note + "\n" + age_note
+
 
 if __name__ == "__main__":
     # Read in models
@@ -228,7 +244,9 @@ if __name__ == "__main__":
     elif grade == 2 or grade == 3 or grade == 4:
         grade_feedback = "Your predicted body fat is in the ideal range."
     elif grade == 5 or grade == 6:
-        grade_feedback = "Your predicted body fat is very high and may signify health complications."
+        grade_feedback = (
+            "Your predicted body fat is very high and may signify health complications."
+        )
     else:
         grade_feedback = "Your predicted body fat is unhumanly high. Please double check your input measurements."
 
@@ -238,8 +256,9 @@ if __name__ == "__main__":
     # Construct output string (02/15/2023: Omitting feedback message)
     output = """Predicted body fat percentage: {}%
     Health score: {}%
-{}""".format(np.round(body_fat_pred, 2), np.round(score * 100, 2), outlier_output)
+{}""".format(
+        np.round(body_fat_pred, 2), np.round(score * 100, 2), outlier_output
+    )
 
     # Report results
     print(output)
-

@@ -16,7 +16,7 @@ for subdir, dirs, files in os.walk(rootdir):
         if file.endswith(".XPT") | file.endswith(".xpt"):
             # Construct filepath
             filepath = os.path.join(subdir, file)
-            
+
             # Read in XPT data
             data = pd.read_sas(filepath)
 
@@ -31,5 +31,5 @@ for subdir, dirs, files in os.walk(rootdir):
             data.to_csv(newfile_path, index=False)
 
             del data
-            
+
             print(file, "successfully converted to", newfile)
