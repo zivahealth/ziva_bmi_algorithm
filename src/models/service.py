@@ -54,6 +54,9 @@ class BMIService:
         # Identify outliers
         outlier_output = outlier_detection(user_data)
 
+        body_fat_pred_per = np.round(body_fat_pred, 2)
+        health_score_per = np.round(score * 100, 2)
+
         # Construct output string (02/15/2023: Omitting feedback message)
         output = """Predicted body fat percentage: {}%
         Health score: {}%
@@ -64,7 +67,12 @@ class BMIService:
         # Report results
         # print(output)
         # print(grade_feedback)
-        return np.round(score * 100, 2)
+        return {
+            "output": output,
+            "body_fat_pred_per": body_fat_pred_per,
+            "health_score_per": health_score_per,
+            "grade_feedback": grade_feedback,
+        }
 
     def get_i(self, weight_lbs, height_in, sex_num, age_yrs, waist_circum_in):
         models = read_models()
@@ -122,7 +130,12 @@ class BMIService:
         # Report results
         # print(output)
         # print(grade_feedback)
-        return np.round(score * 100, 2)
+        return {
+            "output": output,
+            "body_fat_pred_per": body_fat_pred_per,
+            "health_score_per": health_score_per,
+            "grade_feedback": grade_feedback,
+        }
 
 
 # if __name__ == "__main__":

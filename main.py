@@ -36,31 +36,27 @@ def read_root():
 
 @app.post("/bmi")
 def calculate_bmi(
-    metricSystem: Annotated[str, Form()],
+    metric_system: Annotated[str, Form()],
     age: Annotated[int, Form()],
-    gender: Annotated[int, Form()],
-    heightInFt: Annotated[int, Form()],
-    heightInM: Annotated[int, Form()],
-    weightInKG: Annotated[int, Form()],
-    waistCircumCm: Annotated[int, Form()],
+    sex_num: Annotated[int, Form()],
+    height_in: Annotated[int, Form()],
+    weight_kg: Annotated[int, Form()],
+    waist_circum_cm: Annotated[int, Form()],
 ):
     print("age: ", age)
-    print("gender: ", gender)
-    heightInCm = heightInFt
-    print("heightInFt: ", heightInFt)
+    print("gender: ", sex_num)
+    print("height_in: ", height_in)
     bmi = BMIService()
-    if metricSystem == "metric":
+    age_yrs = age
+    sex_num = sex_num # m=0|f=1
+
+    if metric_system == "metric":
         weight_kg = weight_kg
-        height_cm = heightInCm
-        sex_num = gender
-        age_yrs = age
-        waist_circum_cm = waistCircumCm
-        output1 = bmi.get_m(weight_kg, height_cm, sex_num, age_yrs, waist_circum_cm)
+        height_cm = height_in*2.54
+        waist_circum_cm = waist_circum_cm
+        output = bmi.get_m(weight_kg, height_cm, sex_num, age_yrs, waist_circum_cm)
     else:
         weight_lbs = weight_kg * 2.205
-        height_in = heightInCm / 2.54
-        sex_num = gender  # m=0|f=1
-        age_yrs = age
-        waist_circum_in = waist_circum_in
+        waist_circum_in = waist_circum_cm*2.54
         output = bmi.get_i(weight_lbs, height_in, sex_num, age_yrs, waist_circum_in)
-    return {"bmi": output, "bmi-m": output1}
+    return {"bmi": output}
