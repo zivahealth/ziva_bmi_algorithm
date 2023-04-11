@@ -41,7 +41,7 @@ def calculate_bmi(
     sex_num: Annotated[int, Form()],
     height_in: Annotated[int, Form()],
     weight_kg: Annotated[int, Form()],
-    waist_circum_cm: Annotated[int, Form()],
+    waist_circum_in: Annotated[int, Form()],
 ):
     print("age: ", age)
     print("gender: ", sex_num)
@@ -53,10 +53,10 @@ def calculate_bmi(
     if metric_system == "metric":
         weight_kg = weight_kg
         height_cm = height_in*2.54
-        waist_circum_cm = waist_circum_cm
+        waist_circum_cm = waist_circum_in/2.54
         output = bmi.get_m(weight_kg, height_cm, sex_num, age_yrs, waist_circum_cm)
     else:
         weight_lbs = weight_kg * 2.205
-        waist_circum_in = waist_circum_cm*2.54
+        waist_circum_in = waist_circum_in
         output = bmi.get_i(weight_lbs, height_in, sex_num, age_yrs, waist_circum_in)
     return {"bmi": output}
