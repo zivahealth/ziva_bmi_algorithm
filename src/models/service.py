@@ -6,7 +6,7 @@ import pickle
 from sklearn.ensemble import RandomForestRegressor
 from main_run_algorithm import outlier_detection, read_models, score_bfp
 
-
+CONVERSION_ARRAY = np.array([0.45359237, 2.53999862, 1, 1, 2.53999862])
 class BMIService:
     def get_m(self, weight_kg=0, height_cm=0, sex_num=0, age_yrs=0, waist_circum_cm=0):
         models = read_models()
@@ -87,6 +87,7 @@ class BMIService:
                 ]
             ]
         )
+        user_data = user_data * CONVERSION_ARRAY
         # Save body fat pct predictions for each imputation's model
         preds = []
 
@@ -106,7 +107,7 @@ class BMIService:
         # it is obsolete in this iteration of the project
 
         if grade == 0:
-            grade_feedback = "Your predicted body fat percentage is unhumanly low. Please double check your input measurements."
+            grade_feedback = "Your predicted body fat percentage is un-humanly low. Please double check your input measurements."
         elif grade == 1:
             grade_feedback = "Your predicted body fat percentage is very low and may signify health complications."
         elif grade == 2 or grade == 3 or grade == 4:
@@ -114,7 +115,7 @@ class BMIService:
         elif grade == 5 or grade == 6:
             grade_feedback = "Your predicted body fat is very high and may signify health complications."
         else:
-            grade_feedback = "Your predicted body fat is unhumanly high. Please double check your input measurements."
+            grade_feedback = "Your predicted body fat is un-humanly high. Please double check your input measurements."
 
         # Identify outliers
         outlier_output = outlier_detection(user_data)

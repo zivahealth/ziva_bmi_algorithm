@@ -34,8 +34,27 @@ def read_root():
     return {"bmi": output, "bmi-m": output1}
 
 
-@app.post("/bmi")
-def calculate_bmi(
+@app.post("/imperial_bmi")
+def imperial_bmi(
+    metric_system: Annotated[str, Form()],
+    age_yrs: Annotated[int, Form()],
+    sex_num: Annotated[int, Form()],
+    height_in: Annotated[int, Form()],
+    weight_lbs: Annotated[float, Form()],
+    waist_circum_in: Annotated[int, Form()],
+):
+    print("age: ", age_yrs)
+    print("gender: ", sex_num)
+    print("height_in: ", height_in)
+    bmi = BMIService()
+    # age_yrs = age
+    # sex_num = sex_num # m=0|f=1
+    # waist_circum_in = waist_circum_in
+    output = bmi.get_i(weight_lbs, height_in, sex_num, age_yrs, waist_circum_in)
+    return {"bmi": output}
+
+@app.post("/metric_bmi")
+def metric_bmi(
     metric_system: Annotated[str, Form()],
     age: Annotated[int, Form()],
     sex_num: Annotated[int, Form()],
