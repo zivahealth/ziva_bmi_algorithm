@@ -42,15 +42,17 @@ def imperial_bmi(
     height_in: Annotated[int, Form()],
     weight_lbs: Annotated[float, Form()],
     waist_circum_in: Annotated[int, Form()],
+    body_fat_pred: Annotated[float, Form()],
 ):
     print("age: ", age_yrs)
     print("gender: ", sex_num)
     print("height_in: ", height_in)
+    print("body_fat_pred: ", body_fat_pred)
     bmi = BMIService()
     # age_yrs = age
     # sex_num = sex_num # m=0|f=1
     # waist_circum_in = waist_circum_in
-    output = bmi.get_i(weight_lbs, height_in, sex_num, age_yrs, waist_circum_in)
+    output = bmi.get_i(weight_lbs, height_in, sex_num, age_yrs, waist_circum_in, body_fat_pred)
     return {"bmi": output}
 
 @app.post("/metric_bmi")

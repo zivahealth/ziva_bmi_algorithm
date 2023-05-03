@@ -74,7 +74,7 @@ class BMIService:
             "grade_feedback": grade_feedback,
         }
 
-    def get_i(self, weight_lbs, height_in, sex_num, age_yrs, waist_circum_in):
+    def get_i(self, weight_lbs, height_in, sex_num, age_yrs, waist_circum_in, body_fat_pred):
         models = read_models()
         user_data = np.array(
             [
@@ -95,8 +95,8 @@ class BMIService:
             preds.append(m.predict(user_data))
 
         # Average the five imputations to arrive at the predicted body fat percentage
-        body_fat_pred = np.mean(preds)
-
+        body_fat_pred = body_fat_pred if body_fat_pred != 0 else np.mean(preds)
+        print("body_fat_pred: ", body_fat_pred)
         # Generate the score and grade
         score, grade = score_bfp(body_fat_pred, user_data[0][3], user_data[0][2])
 
